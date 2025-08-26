@@ -1,5 +1,5 @@
 import pcsc
-import pcsc/util as u
+import pcsc/util as putil
 import std/strutils as s
 
 proc main() =
@@ -17,7 +17,7 @@ proc main() =
   echo "Sending APDU: ", apduHex
 
   let resp = card.transmit(apdu)
-  echo "Response: ", u.prettyHex(resp)
+  echo "Response: ", putil.prettyHex(resp)
   if resp.len >= 2:
     let sw1 = resp[^2]; let sw2 = resp[^1]
     echo "SW1SW2: 0x", s.toHex(int(sw1), 2), s.toHex(int(sw2), 2)
