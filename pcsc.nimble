@@ -13,8 +13,6 @@ bin           = @[]
 
 requires "nim >= 1.6.14"
 
-repository   = "https://github.com/mmlado/pcsc-nim"
-
 task list_readers, "Run list_readers example":
   exec "nim c -r examples/list_readers.nim"
 

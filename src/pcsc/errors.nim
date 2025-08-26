@@ -18,21 +18,21 @@ type
 # -----------------------
 
 const
-  SCARD_S_SUCCESS*        = 0'i32
-  SCARD_E_CANCELLED*      = -0x80100002'i32
-  SCARD_E_CANT_DISPOSE*   = -0x8010000E'i32
+  SCARD_S_SUCCESS* = 0'i32
+  SCARD_E_CANCELLED* = -0x80100002'i32
+  SCARD_E_CANT_DISPOSE* = -0x8010000E'i32
   SCARD_E_INSUFFICIENT_BUFFER* = -0x80100008'i32
   SCARD_E_INVALID_HANDLE* = -0x80100003'i32
   SCARD_E_INVALID_PARAMETER* = -0x80100004'i32
-  SCARD_E_INVALID_VALUE*  = -0x80100011'i32
-  SCARD_E_NO_SMARTCARD*   = -0x8010000C'i32
-  SCARD_E_NOT_READY*      = -0x80100010'i32
+  SCARD_E_INVALID_VALUE* = -0x80100011'i32
+  SCARD_E_NO_SMARTCARD* = -0x8010000C'i32
+  SCARD_E_NOT_READY* = -0x80100010'i32
   SCARD_E_NOT_TRANSACTED* = -0x80100016'i32
   SCARD_E_READER_UNAVAILABLE* = -0x80100017'i32
-  SCARD_E_SHARING_VIOLATION*  = -0x8010000B'i32
-  SCARD_E_TIMEOUT*        = -0x8010000A'i32
+  SCARD_E_SHARING_VIOLATION* = -0x8010000B'i32
+  SCARD_E_TIMEOUT* = -0x8010000A'i32
   SCARD_E_UNKNOWN_READER* = -0x80100009'i32
-  SCARD_F_COMM_ERROR*     = -0x80100013'i32
+  SCARD_F_COMM_ERROR* = -0x80100013'i32
   SCARD_F_INTERNAL_ERROR* = -0x80100001'i32
 
 # -----------------------
@@ -76,7 +76,7 @@ proc raiseIfError*(code: LONG, msg = "") =
   if code != SCARD_S_SUCCESS:
     let errMsg = if msg.len > 0: msg else: pcscErrorName(code)
     let hexCode = toHex(int(code), 8)
-    var e = PcscError(code: code)   # <-- construct directly
+    var e = PcscError(code: code)
     e.msg = errMsg & " (0x" & hexCode & ")"
     raise e
 

@@ -22,7 +22,7 @@ proc prettyHex*(data: openArray[byte]): string =
 
 proc fromHexLoose*(s: string): seq[byte] =
   ## Parse hex string while ignoring non-hex characters (spaces, newlines, etc.)
-  let hexChars = {'0'..'9','a'..'f','A'..'F'}
+  let hexChars = {'0'..'9', 'a'..'f', 'A'..'F'}
   var tmp = newSeq[char]()
   for ch in s:
     if ch in hexChars:

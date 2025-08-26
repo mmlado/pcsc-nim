@@ -12,10 +12,12 @@ type
 
 proc connect*(ctx: PcscContext, reader: string,
               share: DWORD = SCARD_SHARE_SHARED,
-              prefer: DWORD = (SCARD_PROTOCOL_T0 or SCARD_PROTOCOL_T1)): PcscCard =
+              prefer: DWORD = (SCARD_PROTOCOL_T0 or
+                  SCARD_PROTOCOL_T1)): PcscCard =
   var h: SCARDHANDLE
   var active: DWORD
-  raiseIfError SCardConnect(ctx.handle, reader.cstring, share, prefer, addr h, addr active), "SCardConnect"
+  raiseIfError SCardConnect(ctx.handle, reader.cstring, share, prefer, addr h,
+      addr active), "SCardConnect"
   result.handle = h
   result.protocol = active
   result.ctx = ctx
@@ -42,7 +44,8 @@ proc transmit*(c: PcscCard, apdu: seq[byte], recvMax: int = 258): seq[byte] =
   var recvLen = DWORD(recv.len)
   let recvPtr = (if recv.len > 0: unsafeAddr recv[0] else: nil)
 
-  raiseIfError SCardTransmit(c.handle, sendPci, sendPtr, sendLen, nil, recvPtr, addr recvLen), "SCardTransmit"
+  raiseIfError SCardTransmit(c.handle, sendPci, sendPtr, sendLen, nil, recvPtr,
+      addr recvLen), "SCardTransmit"
   recv.setLen(int(recvLen))
   recv
 
