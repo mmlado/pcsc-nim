@@ -5,9 +5,8 @@ author        = "mmlado"
 description   = "Thin + ergonomic Nim bindings for PC/SC (winscard / pcsc‑lite) "
 license       = "MIT"
 srcDir        = "src"
-installDirs   = @["src"]      # install only the library sources
-skipDirs      = @["examples", "tests"]  # don’t install these
-bin           = @[]
+installDirs   = @["src"]
+skipDirs      = @["examples", "tests"]
 
 # Dependencies
 
