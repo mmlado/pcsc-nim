@@ -9,9 +9,11 @@ else:
   {.pragma: pcscall, cdecl, dynlib: libpcsc.}
 
 type
-  DWORD* = uint32
-  LONG* = int32
-  # Pointer-sized handles (works on 64-bit)
+  # On Linux, pcsclite defines DWORD=unsigned long and LONG=long,
+  # both 64-bit on 64-bit systems. Using pointer-sized types here
+  # ensures correct ABI for output parameters (ptr DWORD writes 8 bytes).
+  DWORD* = uint
+  LONG* = int
   SCARDCONTEXT* = uint
   SCARDHANDLE* = uint
 
