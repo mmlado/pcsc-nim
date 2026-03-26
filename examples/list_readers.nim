@@ -1,4 +1,4 @@
-import pcsc/context
+import pcsc
 
 proc main() =
   let ctx = establishContext()
